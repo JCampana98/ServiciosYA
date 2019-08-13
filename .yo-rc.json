@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "ar.edu.um.serviciosya.app",
+      "nativeLanguage": "es"
+    },
+    "jhipsterVersion": "6.2.0",
+    "applicationType": "monolith",
+    "baseName": "ServiciosYA",
+    "packageName": "ar.edu.um.serviciosya.app",
+    "packageFolder": "ar/edu/um/serviciosya/app",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OTBlZDYyMGIxNTJlMzk5NGFhNWFkZGJlN2UzOGEwYWU3ZjQ0OGZiMzJhZGExZWVlMzI5Y2Q1NjFhNWE4ZDJmYzU1OGRkNzg5ODk1ZmYzNzA0M2M1YTY2OWRhOTgyYzkxMjY5YzExYjgwYjJiMDM3NmFiMDhlZmQyNDRkMGI5ZGM=",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "darkly",
+    "clientThemeVariant": "dark",
+    "testFrameworks": ["gatling"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "es",
+    "languages": ["es", "en"],
+    "blueprints": []
+  }
+}
