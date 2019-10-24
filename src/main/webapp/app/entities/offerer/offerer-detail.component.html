@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="offerer">
+            <h2><span jhiTranslate="serviciosYaApp.offerer.detail.title">Offerer</span> {{offerer.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="serviciosYaApp.offerer.gender">Gender</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'serviciosYaApp.Gender.' + offerer.gender}}">{{offerer.gender}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.offerer.phoneNumber">Phone Number</span></dt>
+                <dd>
+                    <span>{{offerer.phoneNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.offerer.birthday">Birthday</span></dt>
+                <dd>
+                    <span>{{offerer.birthday}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.offerer.reputation">Reputation</span></dt>
+                <dd>
+                    <span>{{offerer.reputation}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.offerer.location">Location</span></dt>
+                <dd>
+                    <div *ngIf="offerer.locationId">
+                        <a [routerLink]="['/location', offerer.locationId, 'view']">{{offerer.locationStreetAddress}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/offerer', offerer.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

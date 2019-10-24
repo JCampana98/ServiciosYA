@@ -2,15 +2,23 @@ package ar.edu.um.serviciosya.app.service;
 
 import ar.edu.um.serviciosya.app.config.Constants;
 import ar.edu.um.serviciosya.app.domain.Authority;
+import ar.edu.um.serviciosya.app.domain.Offerer;
+import ar.edu.um.serviciosya.app.domain.Person;
 import ar.edu.um.serviciosya.app.domain.User;
+import ar.edu.um.serviciosya.app.domain.enumeration.Gender;
 import ar.edu.um.serviciosya.app.repository.AuthorityRepository;
+import ar.edu.um.serviciosya.app.repository.LocationRepository;
+import ar.edu.um.serviciosya.app.repository.OffererRepository;
+import ar.edu.um.serviciosya.app.repository.PersonRepository;
 import ar.edu.um.serviciosya.app.repository.UserRepository;
 import ar.edu.um.serviciosya.app.security.AuthoritiesConstants;
 import ar.edu.um.serviciosya.app.security.SecurityUtils;
 import ar.edu.um.serviciosya.app.service.dto.UserDTO;
 import ar.edu.um.serviciosya.app.service.util.RandomUtil;
 import ar.edu.um.serviciosya.app.web.rest.errors.*;
+import ar.edu.um.serviciosya.app.web.rest.vm.ManagedUserVM;
 
+import org.hibernate.service.spi.InjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -22,6 +30,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -43,6 +52,12 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
+    private OffererRepository offererRepository;
+
+    private PersonRepository personRepository;
+    
+    private LocationRepository locationRepository;
+    
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -120,6 +135,7 @@ public class UserService {
         userRepository.save(newUser);
         this.clearUserCaches(newUser);
         log.debug("Created Information for User: {}", newUser);
+		
         return newUser;
     }
 
@@ -133,35 +149,38 @@ public class UserService {
         return true;
     }
 
-    public User createUser(UserDTO userDTO) {
-        User user = new User();
-        user.setLogin(userDTO.getLogin().toLowerCase());
-        user.setFirstName(userDTO.getFirstName());
-        user.setLastName(userDTO.getLastName());
-        user.setEmail(userDTO.getEmail().toLowerCase());
-        user.setImageUrl(userDTO.getImageUrl());
-        if (userDTO.getLangKey() == null) {
-            user.setLangKey(Constants.DEFAULT_LANGUAGE); // default language
-        } else {
-            user.setLangKey(userDTO.getLangKey());
-        }
-        String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
-        user.setPassword(encryptedPassword);
-        user.setResetKey(RandomUtil.generateResetKey());
-        user.setResetDate(Instant.now());
-        user.setActivated(true);
-        if (userDTO.getAuthorities() != null) {
-            Set<Authority> authorities = userDTO.getAuthorities().stream()
-                .map(authorityRepository::findById)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .collect(Collectors.toSet());
-            user.setAuthorities(authorities);
-        }
-        userRepository.save(user);
-        this.clearUserCaches(user);
-        log.debug("Created Information for User: {}", user);
-        return user;
+    public User createUser(ManagedUserVM userDTO) {
+    	User newUser = new User();
+    	Set<Authority> authorities = new HashSet<>();
+        String encryptedPassword = passwordEncoder.encode(userDTO.getPassword());
+        newUser.setLogin(userDTO.getLogin());
+        // new user gets initially a generated password
+        newUser.setPassword(encryptedPassword);
+        newUser.setFirstName(userDTO.getFirstName());
+        newUser.setLastName(userDTO.getLastName());
+        newUser.setEmail(userDTO.getEmail());
+        newUser.setLangKey(userDTO.getLangKey());
+        // new user is not active
+        newUser.setActivated(false);
+        // new user gets registration key
+        newUser.setActivationKey(RandomUtil.generateActivationKey());
+        authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
+        newUser.setAuthorities(authorities);
+        userRepository.save(newUser);
+        log.debug("Created Information for User: {}", newUser);
+        
+        // Create and save the Person entity
+        Person person = new Person();
+        person.setUser(newUser);
+        person.setPhoneNumber(userDTO.getPhoneNumber());
+        person.setGender(userDTO.getGender());
+        person.setBirthday(userDTO.getBirthday());
+        log.info("Location: {} ", locationRepository.findById(2l).get());
+        person.setLocation(locationRepository.findById(2l).get());
+        personRepository.save(person);
+        log.debug("Created Information for Person: {}", person);
+        
+        return newUser;
     }
 
     /**

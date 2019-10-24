@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="comment">
+            <h2><span jhiTranslate="serviciosYaApp.comment.detail.title">Comment</span> {{comment.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="serviciosYaApp.comment.qualification">Qualification</span></dt>
+                <dd>
+                    <span>{{comment.qualification}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.comment.commentary">Commentary</span></dt>
+                <dd>
+                    <span>{{comment.commentary}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.comment.offerer">Offerer</span></dt>
+                <dd>
+                    <div *ngIf="comment.offererId">
+                        <a [routerLink]="['/offerer', comment.offererId, 'view']">{{comment.offererId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.comment.person">Person</span></dt>
+                <dd>
+                    <div *ngIf="comment.personId">
+                        <a [routerLink]="['/person', comment.personId, 'view']">{{comment.personId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/comment', comment.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

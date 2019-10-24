@@ -1,0 +1,95 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-turn-heading" jhiTranslate="serviciosYaApp.turn.home.createOrEditLabel">Create or edit a Turn</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="serviciosYaApp.turn.orderDate" for="field_orderDate">Order Date</label>
+                    <div class="d-flex">
+                        <input id="field_orderDate" type="datetime-local" class="form-control" name="orderDate" formControlName="orderDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="serviciosYaApp.turn.workDate" for="field_workDate">Work Date</label>
+                    <div class="d-flex">
+                        <input id="field_workDate" type="datetime-local" class="form-control" name="workDate" formControlName="workDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="serviciosYaApp.turn.cost" for="field_cost">Cost</label>
+                    <input type="number" class="form-control" name="cost" id="field_cost"
+                           formControlName="cost"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="serviciosYaApp.turn.description" for="field_description">Description</label>
+                    <textarea class="form-control" name="description" id="field_description"
+                              formControlName="description"></textarea>
+                    <div *ngIf="editForm.get('description').invalid && (editForm.get('description').dirty || editForm.get('description').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('description').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="serviciosYaApp.turn.available" for="field_available">Available</label>
+                    <input type="checkbox" class="form-control" name="available" id="field_available"
+                           formControlName="available"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="serviciosYaApp.turn.turnState" for="field_turnState">Turn State</label>
+                    <select class="form-control" name="turnState" formControlName="turnState" id="field_turnState">
+                        <option value="ONWAY">{{'serviciosYaApp.TurnState.ONWAY' | translate}}</option>
+                        <option value="DELAY">{{'serviciosYaApp.TurnState.DELAY' | translate}}</option>
+                        <option value="ARRIVED">{{'serviciosYaApp.TurnState.ARRIVED' | translate}}</option>
+                        <option value="CANCELED">{{'serviciosYaApp.TurnState.CANCELED' | translate}}</option>
+                        <option value="FINISHED">{{'serviciosYaApp.TurnState.FINISHED' | translate}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="serviciosYaApp.turn.transaction" for="field_transaction">Transaction</label>
+                    <select class="form-control" id="field_transaction" name="transaction" formControlName="transactionId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="transactionOption.id" *ngFor="let transactionOption of transactions; trackBy: trackTransactionById">{{transactionOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="serviciosYaApp.turn.location" for="field_location">Location</label>
+                    <select class="form-control" id="field_location" name="location" formControlName="locationId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="locationOption.id" *ngFor="let locationOption of locations; trackBy: trackLocationById">{{locationOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="serviciosYaApp.turn.offerer" for="field_offerer">Offerer</label>
+                    <select class="form-control" id="field_offerer" name="offerer" formControlName="offererId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="offererOption.id" *ngFor="let offererOption of offerers; trackBy: trackOffererById">{{offererOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="serviciosYaApp.turn.person" for="field_person">Person</label>
+                    <select class="form-control" id="field_person" name="person" formControlName="personId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="personOption.id" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

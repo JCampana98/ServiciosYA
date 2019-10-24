@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="profession">
+            <h2><span jhiTranslate="serviciosYaApp.profession.detail.title">Profession</span> {{profession.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="serviciosYaApp.profession.name">Name</span></dt>
+                <dd>
+                    <span>{{profession.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.profession.professionDetail">Profession Detail</span></dt>
+                <dd>
+                    <span>{{profession.professionDetail}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.profession.offerer">Offerer</span></dt>
+                <dd>
+                    <div *ngIf="profession.offererId">
+                        <a [routerLink]="['/offerer', profession.offererId, 'view']">{{profession.offererId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/profession', profession.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

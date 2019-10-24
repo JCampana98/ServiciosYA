@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="location">
+            <h2><span jhiTranslate="serviciosYaApp.location.detail.title">Location</span> {{location.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="serviciosYaApp.location.streetAddress">Street Address</span></dt>
+                <dd>
+                    <span>{{location.streetAddress}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.location.streetNumber">Street Number</span></dt>
+                <dd>
+                    <span>{{location.streetNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.location.flatNumber">Flat Number</span></dt>
+                <dd>
+                    <span>{{location.flatNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.location.safeZone">Safe Zone</span></dt>
+                <dd>
+                    <span>{{location.safeZone}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.location.country">Country</span></dt>
+                <dd>
+                    <span>{{location.country}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.location.zipCode">Zip Code</span></dt>
+                <dd>
+                    <span>{{location.zipCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.location.city">City</span></dt>
+                <dd>
+                    <span>{{location.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.location.province">Province</span></dt>
+                <dd>
+                    <span>{{location.province}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.location.department">Department</span></dt>
+                <dd>
+                    <span>{{location.department}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.location.coordinate">Coordinate</span></dt>
+                <dd>
+                    <div *ngIf="location.coordinateId">
+                        <a [routerLink]="['/coordinate', location.coordinateId, 'view']">{{location.coordinateId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/location', location.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

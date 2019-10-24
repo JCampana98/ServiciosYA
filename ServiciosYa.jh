@@ -1,0 +1,116 @@
+/**
+ * The TurnState enumeration.
+ */
+enum TurnState {
+	ONWAY,
+    DELAY,
+    ARRIVED,
+    CANCELED,
+    FINISHED
+}
+
+/**
+ * The Gender enumeration.
+ */
+enum Gender {
+	MALE,
+    FEMALE,
+    OTHER
+}
+
+/**
+ * The Coordinate entity.
+ */
+entity Coordinate{
+	latitude String,
+    longitude String
+}
+
+/**
+ * The Location entity.
+ */
+entity Location {
+	streetAddress String  required,
+  	streetNumber Integer required,
+    flatNumber Integer,
+    safeZone Boolean required,
+    country String  required,
+    zipCode String required,
+    city String  required,
+    province String  required,
+    department String
+}
+
+/**
+ * The Person entity.
+ */
+entity Person {
+	gender Gender required,
+    phoneNumber Long required,
+    birthday ZonedDateTime required
+}
+
+/**
+ * The Offerer entity.
+ */
+entity Offerer {
+	gender Gender required,
+    phoneNumber Long required,
+    birthday ZonedDateTime required,
+	reputation Float
+}
+
+/**
+ * The Profession entity.
+ */
+entity Profession {
+	name String ,
+	professionDetail String
+}
+
+/**
+ * The Turn entity.
+ */
+entity Turn {
+	orderDate ZonedDateTime,
+    workDate ZonedDateTime,
+    cost BigDecimal,
+    description TextBlob required,
+    available Boolean,
+    turnState TurnState
+}
+
+/**
+ * The Comment entity.
+ */
+entity Comment {
+	qualification Integer required min(0) max(5),
+    commentary String
+}
+
+/**
+ * The Transaction entity.
+ */
+entity Transaction {
+	date ZonedDateTime,
+    amount BigDecimal
+}
+
+relationship OneToOne {
+	Turn to Transaction,
+    Turn{location} to Location,
+    Location{coordinate} to Coordinate
+}
+
+relationship OneToMany {
+  Offerer to Profession,
+  Offerer to Turn,
+  Offerer to Comment,
+  Person to Turn,
+  Person to Comment,
+  Location{persons} to Person{location(streetAddress)}
+  Location{offerers} to Offerer{location(streetAddress)}
+}
+
+dto * with mapstruct
+paginate * with pagination

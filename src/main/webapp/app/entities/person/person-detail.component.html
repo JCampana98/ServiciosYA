@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="person">
+            <h2><span jhiTranslate="serviciosYaApp.person.detail.title">Person</span> {{person.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="serviciosYaApp.person.gender">Gender</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'serviciosYaApp.Gender.' + person.gender}}">{{person.gender}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.person.phoneNumber">Phone Number</span></dt>
+                <dd>
+                    <span>{{person.phoneNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.person.birthday">Birthday</span></dt>
+                <dd>
+                    <span>{{person.birthday}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.person.location">Location</span></dt>
+                <dd>
+                    <div *ngIf="person.locationId">
+                        <a [routerLink]="['/location', person.locationId, 'view']">{{person.locationStreetAddress}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/person', person.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

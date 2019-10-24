@@ -27,8 +27,60 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!success">
+           		<div class="form-group">
+                    <label class="form-control-label" for="firstName" >First Name</label>
+                    <input class="form-control" id="firstName" name="firstName" formControlName="firstName">
+                </div>
                 <div class="form-group">
-
+                    <label class="form-control-label" for="lastName" >Last Name</label>
+                    <input class="form-control" id="lastName" name="lastName" formControlName="lastName">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="serviciosYaApp.offerer.gender" for="field_gender">Gender</label>
+                    <select class="form-control" name="gender" formControlName="gender" id="field_gender">
+                        <option value="MALE">{{'serviciosYaApp.Gender.MALE' | translate}}</option>
+                        <option value="FEMALE">{{'serviciosYaApp.Gender.FEMALE' | translate}}</option>
+                        <option value="OTHER">{{'serviciosYaApp.Gender.OTHER' | translate}}</option>
+                    </select>
+                    <div *ngIf="editForm.get('gender').invalid && (editForm.get('gender').dirty || editForm.get('gender').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('gender').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="serviciosYaApp.offerer.phoneNumber" for="field_phoneNumber">Phone Number</label>
+                    <input class="form-control" name="phoneNumber" id="field_phoneNumber"
+                           formControlName="phoneNumber"/>
+                    <div *ngIf="editForm.get('phoneNumber').invalid && (editForm.get('phoneNumber').dirty || editForm.get('phoneNumber').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('phoneNumber').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('phoneNumber')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="serviciosYaApp.offerer.birthday" for="field_birthday">Birthday</label>
+                    <div class="d-flex">
+                        <input id="field_birthday" type="datetime-local" class="form-control" name="birthday" formControlName="birthday" placeholder="YYYY-MM-DD"/>
+                    </div>
+                    <div *ngIf="editForm.get('birthday').invalid && (editForm.get('birthday').dirty || editForm.get('birthday').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('birthday').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('birthday').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" for="login" jhiTranslate="global.form.username.label">Username</label>
                     <input type="text" class="form-control" id="login" name="login" placeholder="{{'global.form.username.placeholder' | translate}}"
                            formControlName="login">
@@ -116,10 +168,6 @@
                 <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" jhiTranslate="register.form.button">Register</button>
             </form>
             <p></p>
-            <div class="alert alert-warning">
-                <span jhiTranslate="global.messages.info.authenticated.prefix">If you want to </span>
-                <a class="alert-link" (click)="openLogin()" jhiTranslate="global.messages.info.authenticated.link">sign in</a><span jhiTranslate="global.messages.info.authenticated.suffix">, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
-            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,11 @@
+id;order_date;work_date;cost;description;available;turn_state
+1;2019-09-09T16:38:08;2019-09-09T16:59:22;24398;../fake-data/blob/hipster.txt;true;ONWAY
+2;2019-09-09T12:34:30;2019-09-09T03:55:30;35007;../fake-data/blob/hipster.txt;true;DELAY
+3;2019-09-09T18:18:53;2019-09-09T17:28:34;72245;../fake-data/blob/hipster.txt;false;CANCELED
+4;2019-09-09T04:33:19;2019-09-09T07:30:33;4360;../fake-data/blob/hipster.txt;false;FINISHED
+5;2019-09-09T14:07:00;2019-09-09T05:03:19;1545;../fake-data/blob/hipster.txt;true;FINISHED
+6;2019-09-08T23:28:22;2019-09-09T02:31:42;7534;../fake-data/blob/hipster.txt;false;DELAY
+7;2019-09-09T02:34:24;2019-09-09T16:33:25;31692;../fake-data/blob/hipster.txt;false;ARRIVED
+8;2019-09-09T13:31:40;2019-09-09T00:31:59;84421;../fake-data/blob/hipster.txt;true;ONWAY
+9;2019-09-08T23:14:22;2019-09-09T14:23:35;14008;../fake-data/blob/hipster.txt;false;ARRIVED
+10;2019-09-09T02:37:57;2019-09-09T06:16:20;13662;../fake-data/blob/hipster.txt;true;FINISHED

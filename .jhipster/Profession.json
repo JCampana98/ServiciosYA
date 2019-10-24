@@ -1,0 +1,32 @@
+{
+    "name": "Profession",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "professionDetail",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "offerer",
+            "otherEntityRelationshipName": "profession",
+            "relationshipName": "offerer",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190902234937",
+    "javadoc": "The Profession entity.",
+    "entityTableName": "profession",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

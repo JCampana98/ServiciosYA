@@ -43,6 +43,22 @@ public class CacheConfiguration {
             createCache(cm, ar.edu.um.serviciosya.app.domain.User.class.getName());
             createCache(cm, ar.edu.um.serviciosya.app.domain.Authority.class.getName());
             createCache(cm, ar.edu.um.serviciosya.app.domain.User.class.getName() + ".authorities");
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Coordinate.class.getName());
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Location.class.getName());
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Person.class.getName());
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Offerer.class.getName());
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Offerer.class.getName() + ".professions");
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Offerer.class.getName() + ".turns");
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Offerer.class.getName() + ".comments");
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Profession.class.getName());
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Turn.class.getName());
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Comment.class.getName());
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Transaction.class.getName());
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Location.class.getName() + ".people");
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Location.class.getName() + ".persons");
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Location.class.getName() + ".offerers");
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Person.class.getName() + ".turns");
+            createCache(cm, ar.edu.um.serviciosya.app.domain.Person.class.getName() + ".comments");
             // jhipster-needle-ehcache-add-entry
         };
     }

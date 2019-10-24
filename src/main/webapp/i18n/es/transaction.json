@@ -1,0 +1,24 @@
+{
+  "serviciosYaApp": {
+    "transaction": {
+      "home": {
+        "title": "Transactions",
+        "createLabel": "Crear nuevo Transaction",
+        "createOrEditLabel": "Crear o editar Transaction",
+        "notFound": "No Transactions found"
+      },
+      "created": "Un nuevo Transaction ha sido creado con el identificador {{ param }}",
+      "updated": "Un Transaction ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Transaction ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Transaction {{ id }}?"
+      },
+      "detail": {
+        "title": "Transaction"
+      },
+      "date": "Date",
+      "amount": "Amount",
+      "turn": "Turn"
+    }
+  }
+}

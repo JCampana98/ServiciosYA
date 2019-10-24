@@ -1,0 +1,32 @@
+{
+    "name": "Transaction",
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "turn",
+            "otherEntityRelationshipName": "transaction",
+            "relationshipName": "turn",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190902234940",
+    "javadoc": "The Transaction entity.",
+    "entityTableName": "transaction",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

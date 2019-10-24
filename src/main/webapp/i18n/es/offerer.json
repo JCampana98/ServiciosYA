@@ -1,0 +1,29 @@
+{
+  "serviciosYaApp": {
+    "offerer": {
+      "home": {
+        "title": "Offerers",
+        "createLabel": "Crear nuevo Offerer",
+        "createOrEditLabel": "Crear o editar Offerer",
+        "notFound": "No Offerers found"
+      },
+      "created": "Un nuevo Offerer ha sido creado con el identificador {{ param }}",
+      "updated": "Un Offerer ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Offerer ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Offerer {{ id }}?"
+      },
+      "detail": {
+        "title": "Offerer"
+      },
+      "gender": "Gender",
+      "phoneNumber": "Phone Number",
+      "birthday": "Birthday",
+      "reputation": "Reputation",
+      "profession": "Profession",
+      "turn": "Turn",
+      "comment": "Comment",
+      "location": "Location"
+    }
+  }
+}

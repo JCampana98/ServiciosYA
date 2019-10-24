@@ -1,0 +1,24 @@
+{
+  "serviciosYaApp": {
+    "profession": {
+      "home": {
+        "title": "Professions",
+        "createLabel": "Crear nuevo Profession",
+        "createOrEditLabel": "Crear o editar Profession",
+        "notFound": "No Professions found"
+      },
+      "created": "Un nuevo Profession ha sido creado con el identificador {{ param }}",
+      "updated": "Un Profession ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Profession ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Profession {{ id }}?"
+      },
+      "detail": {
+        "title": "Profession"
+      },
+      "name": "Name",
+      "professionDetail": "Profession Detail",
+      "offerer": "Offerer"
+    }
+  }
+}

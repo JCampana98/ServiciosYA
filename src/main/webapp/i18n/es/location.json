@@ -1,0 +1,33 @@
+{
+  "serviciosYaApp": {
+    "location": {
+      "home": {
+        "title": "Locations",
+        "createLabel": "Crear nuevo Location",
+        "createOrEditLabel": "Crear o editar Location",
+        "notFound": "No Locations found"
+      },
+      "created": "Un nuevo Location ha sido creado con el identificador {{ param }}",
+      "updated": "Un Location ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Location ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Location {{ id }}?"
+      },
+      "detail": {
+        "title": "Location"
+      },
+      "streetAddress": "Street Address",
+      "streetNumber": "Street Number",
+      "flatNumber": "Flat Number",
+      "safeZone": "Safe Zone",
+      "country": "Country",
+      "zipCode": "Zip Code",
+      "city": "City",
+      "province": "Province",
+      "department": "Department",
+      "coordinate": "Coordinate",
+      "persons": "Persons",
+      "offerers": "Offerers"
+    }
+  }
+}

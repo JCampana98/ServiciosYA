@@ -1,0 +1,68 @@
+{
+    "name": "Offerer",
+    "fields": [
+        {
+            "fieldName": "gender",
+            "fieldType": "Gender",
+            "fieldValues": "MALE,FEMALE,OTHER",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "phoneNumber",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "birthday",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "reputation",
+            "fieldType": "Float"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "profession",
+            "otherEntityRelationshipName": "offerer",
+            "relationshipName": "profession"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "turn",
+            "otherEntityRelationshipName": "offerer",
+            "relationshipName": "turn"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "comment",
+            "otherEntityRelationshipName": "offerer",
+            "relationshipName": "comment"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "offerers",
+            "relationshipName": "location",
+            "otherEntityField": "streetAddress"
+        }
+    ],
+    "changelogDate": "20190902234936",
+    "javadoc": "The Offerer entity.",
+    "entityTableName": "offerer",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

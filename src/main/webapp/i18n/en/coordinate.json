@@ -1,0 +1,23 @@
+{
+  "serviciosYaApp": {
+    "coordinate": {
+      "home": {
+        "title": "Coordinates",
+        "createLabel": "Create a new Coordinate",
+        "createOrEditLabel": "Create or edit a Coordinate",
+        "notFound": "No Coordinates found"
+      },
+      "created": "A new Coordinate is created with identifier {{ param }}",
+      "updated": "A Coordinate is updated with identifier {{ param }}",
+      "deleted": "A Coordinate is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Coordinate {{ id }}?"
+      },
+      "detail": {
+        "title": "Coordinate"
+      },
+      "latitude": "Latitude",
+      "longitude": "Longitude"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="coordinate">
+            <h2><span jhiTranslate="serviciosYaApp.coordinate.detail.title">Coordinate</span> {{coordinate.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="serviciosYaApp.coordinate.latitude">Latitude</span></dt>
+                <dd>
+                    <span>{{coordinate.latitude}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.coordinate.longitude">Longitude</span></dt>
+                <dd>
+                    <span>{{coordinate.longitude}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/coordinate', coordinate.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

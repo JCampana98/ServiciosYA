@@ -1,0 +1,12 @@
+{
+  "serviciosYaApp": {
+    "TurnState": {
+      "null": "",
+      "ONWAY": "ONWAY",
+      "DELAY": "DELAY",
+      "ARRIVED": "ARRIVED",
+      "CANCELED": "CANCELED",
+      "FINISHED": "FINISHED"
+    }
+  }
+}

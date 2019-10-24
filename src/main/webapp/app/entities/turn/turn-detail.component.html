@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="turn">
+            <h2><span jhiTranslate="serviciosYaApp.turn.detail.title">Turn</span> {{turn.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="serviciosYaApp.turn.orderDate">Order Date</span></dt>
+                <dd>
+                    <span>{{turn.orderDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.turn.workDate">Work Date</span></dt>
+                <dd>
+                    <span>{{turn.workDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.turn.cost">Cost</span></dt>
+                <dd>
+                    <span>{{turn.cost}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.turn.description">Description</span></dt>
+                <dd>
+                    <span>{{turn.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.turn.available">Available</span></dt>
+                <dd>
+                    <span>{{turn.available}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.turn.turnState">Turn State</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'serviciosYaApp.TurnState.' + turn.turnState}}">{{turn.turnState}}</span>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.turn.transaction">Transaction</span></dt>
+                <dd>
+                    <div *ngIf="turn.transactionId">
+                        <a [routerLink]="['/transaction', turn.transactionId, 'view']">{{turn.transactionId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.turn.location">Location</span></dt>
+                <dd>
+                    <div *ngIf="turn.locationId">
+                        <a [routerLink]="['/location', turn.locationId, 'view']">{{turn.locationId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.turn.offerer">Offerer</span></dt>
+                <dd>
+                    <div *ngIf="turn.offererId">
+                        <a [routerLink]="['/offerer', turn.offererId, 'view']">{{turn.offererId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="serviciosYaApp.turn.person">Person</span></dt>
+                <dd>
+                    <div *ngIf="turn.personId">
+                        <a [routerLink]="['/person', turn.personId, 'view']">{{turn.personId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/turn', turn.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
