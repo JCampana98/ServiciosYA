@@ -22,13 +22,14 @@ import ar.edu.um.serviciosya.app.domain.enumeration.Gender;
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @OneToOne
-    @MapsId
-    private User user;
     
     @Id
     private Long id;
+    
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "id")
+    private User user;
 
     @NotNull
     @Enumerated(EnumType.STRING)

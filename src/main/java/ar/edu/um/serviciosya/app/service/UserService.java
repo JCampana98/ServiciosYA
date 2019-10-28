@@ -30,6 +30,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -52,17 +53,21 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
-    private OffererRepository offererRepository;
+    private final OffererRepository offererRepository;
 
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
     
-    private LocationRepository locationRepository;
+    private final LocationRepository locationRepository;
     
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
-        this.userRepository = userRepository;
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager, OffererRepository offererRepository, PersonRepository personRepository, LocationRepository locationRepository) {
+        
+		this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
+        this.offererRepository = offererRepository;
+        this.personRepository = personRepository;
+        this.locationRepository = locationRepository;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -169,16 +174,29 @@ public class UserService {
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
         
-        // Create and save the Person entity
-        Person person = new Person();
-        person.setUser(newUser);
-        person.setPhoneNumber(userDTO.getPhoneNumber());
-        person.setGender(userDTO.getGender());
-        person.setBirthday(userDTO.getBirthday());
-        log.info("Location: {} ", locationRepository.findById(2l).get());
-        person.setLocation(locationRepository.findById(2l).get());
-        personRepository.save(person);
-        log.debug("Created Information for Person: {}", person);
+        if(userDTO.getIsOfferer()) {
+        	//Create and save the Offerer entity
+	        Offerer offerer = new Offerer();
+	        offerer.setUser(newUser);
+	        offerer.setPhoneNumber(userDTO.getPhoneNumber());
+	        offerer.setGender(userDTO.getGender());
+	        offerer.setBirthday(userDTO.getBirthday().atStartOfDay(ZoneId.systemDefault()));
+	        log.info("Location: {} ", locationRepository.findById(1l).get());
+	        offerer.setLocation(locationRepository.findById(1l).get());
+	        offererRepository.save(offerer);
+	        log.debug("Created Information for Person: {}", offerer);
+        } else { 
+	        //Create and save the Person entity
+	        Person person = new Person();
+	        person.setUser(newUser);
+	        person.setPhoneNumber(userDTO.getPhoneNumber());
+	        person.setGender(userDTO.getGender());
+	        person.setBirthday(userDTO.getBirthday().atStartOfDay(ZoneId.systemDefault()));
+	        log.info("Location: {} ", locationRepository.findById(1l).get());
+	        person.setLocation(locationRepository.findById(1l).get());
+	        personRepository.save(person);
+	        log.debug("Created Information for Person: {}", person);
+        }
         
         return newUser;
     }

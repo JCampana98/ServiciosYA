@@ -58,7 +58,7 @@ public class Location implements Serializable {
     private String department;
 
     @OneToOne
-    @JoinColumn(unique = true)
+    @JoinColumn
     private Coordinate coordinate;
 
     @OneToMany(mappedBy = "location")

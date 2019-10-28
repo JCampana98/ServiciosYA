@@ -25,6 +25,7 @@ public class Offerer implements Serializable {
     
     @OneToOne
     @MapsId
+    @JoinColumn(name = "id")
     private User user;
     
     @Id

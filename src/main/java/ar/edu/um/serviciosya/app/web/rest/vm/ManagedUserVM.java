@@ -3,6 +3,7 @@ package ar.edu.um.serviciosya.app.web.rest.vm;
 import ar.edu.um.serviciosya.app.domain.enumeration.Gender;
 import ar.edu.um.serviciosya.app.service.dto.UserDTO;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 import javax.validation.constraints.Size;
@@ -23,7 +24,7 @@ public class ManagedUserVM extends UserDTO {
 
     private Long phoneNumber;
 
-    private ZonedDateTime birthday;
+    private LocalDate birthday;
     
     private Boolean isOfferer;
 
@@ -47,11 +48,11 @@ public class ManagedUserVM extends UserDTO {
         this.phoneNumber = phoneNumber;
     }
 
-    public ZonedDateTime getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(ZonedDateTime birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
